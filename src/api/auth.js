@@ -162,4 +162,57 @@ export const adminGetOrdersBySiteApi = (siteId, params) => {
 
 // --- 结束 管理员订单管理 API ---
 
+// --- 管理员订单发货管理 API ---
+
+/**
+ * (管理员) 查询所有待发货订单
+ * @param {object} params - 查询参数 { page, pageSize }
+ */
+export const adminGetAllDispatchOrdersApi = (params) => {
+  return apiClient.get("/attendant/dispatch/orders", { params });
+};
+
+/**
+ * (管理员) 查询特定站点的待发货订单
+ * @param {number} siteId - 站点ID
+ * @param {object} params - 查询参数 { page, pageSize }
+ */
+export const adminGetDispatchOrdersBySiteApi = (siteId, params) => {
+  return apiClient.get(`/attendant/dispatch/site/${siteId}/orders`, { params });
+};
+
+/**
+ * (管理员) 批量发货指定站点的订单
+ * @param {number} siteId - 站点ID
+ * @param {string[]} orderIds - 要发货的订单ID列表
+ */
+export const adminDispatchOrdersApi = (siteId, orderIds) => {
+  return apiClient.post(
+    `/attendant/dispatch/site/${siteId}/dispatch`,
+    orderIds
+  ); // orderIds 是请求体
+};
+
+// --- 管理员订单送达管理 API ---
+
+/**
+ * (管理员) 查询特定站点的运送中订单
+ * @param {number} siteId - 站点ID
+ * @param {object} params - 查询参数 { page, pageSize }
+ */
+export const adminGetDeliveryOrdersBySiteApi = (siteId, params) => {
+  return apiClient.get(`/attendant/delivery/site/${siteId}/orders`, { params });
+};
+
+/**
+ * (管理员) 批量确认送达指定站点的订单
+ * @param {number} siteId - 站点ID
+ * @param {string[]} orderIds - 要确认送达的订单ID列表
+ */
+export const adminReceiveOrdersApi = (siteId, orderIds) => {
+  return apiClient.post(`/attendant/delivery/site/${siteId}/receive`, orderIds); // orderIds 是请求体
+};
+
+// --- 结束 管理员订单管理 API ---
+
 export default apiClient;

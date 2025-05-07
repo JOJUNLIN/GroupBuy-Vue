@@ -13,7 +13,7 @@
       <el-table :data="siteList" style="width: 100%" v-loading="loading">
         <el-table-column prop="id" label="站点ID" width="100" />
         <el-table-column prop="address" label="站点名称/地址" />
-        <el-table-column prop="group_num" label="当前拼团数" width="150" />
+        <el-table-column prop="group_num" label="当前拼团商品数" width="150" />
       </el-table>
 
       <!-- 新增/编辑站点对话框 -->
